@@ -9,9 +9,22 @@
 ```bash
 docker network create eth-gateway
 
+# Parity
 mkdir -p /data/parity-ethereum-stable
 docker run -d --net eth-gateway --name parity-ethereum-stable -v /data/parity-ethereum-stable:/home/parity/.local/share/io.parity.ethereum -p 127.0.0.1:8545:8545 -p 30303:30303 -p 30303:30303/udp parity/parity:stable \
 --base-path /home/parity/.local/share/io.parity.ethereum --no-ipc --jsonrpc-apis="eth,rpc" --jsonrpc-interface all --jsonrpc-hosts="all" --jsonrpc-cors="all"
+
+# or Geth stable
+mkdir -p /data/ethereum-node-stable
+docker run -d --name ethereum-node-stable --net eth-gateway -v /data/ethereum-node-stable:/root \
+           -p 127.0.0.1:8545:8545 -p 30303:30303 -p 30303:30303/udp \
+           ethereum/client-go:stable --syncmode "fast" --cache=4096 --rpc --rpcaddr 0.0.0.0 --rpcvhosts=* --rpcapi eth --rpccorsdomain="whoisens.org"
+
+# or Geth unstable
+mkdir -p /data/ethereum-node
+docker run -d --name ethereum-node --net eth-gateway -v /data/ethereum-node:/root \
+           -p 127.0.0.1:8545:8545 -p 30303:30303 -p 30303:30303/udp \
+           ethereum/client-go --syncmode "fast" --cache=4096 --rpc --rpcaddr 0.0.0.0 --rpcvhosts=* --rpcapi eth --rpccorsdomain="whoisens.org"
 
 docker build . -t whoisens-eth-gateway
 
