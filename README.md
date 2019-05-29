@@ -14,7 +14,7 @@ mkdir -p /data/parity-ethereum-stable
 docker run -d --net eth-gateway --name parity-ethereum-stable \
        -v /data/parity-ethereum-stable:/home/parity/.local/share/io.parity.ethereum \
        -p 127.0.0.1:8545:8545 -p 30303:30303 -p 30303:30303/udp parity/parity:stable \
-       --base-path /home/parity/.local/share/io.parity.ethereum --no-ipc --jsonrpc-apis="eth,rpc.net" \
+       --base-path /home/parity/.local/share/io.parity.ethereum --no-ipc --jsonrpc-apis="eth,rpc,net" \
        --jsonrpc-interface all --jsonrpc-hosts="all" --jsonrpc-cors="all" --cache-size 4096 \
        --jsonrpc-max-payload=1 --db-compaction=hdd --mode=active --max-peers=512 --min-peers=50 --max-pending-peers=512 \
        --no-hardware-wallets
