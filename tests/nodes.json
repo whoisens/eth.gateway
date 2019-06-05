@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Geth stable",
+    "id": "",
+    "url": "https://eth.gateway.whoisens.org"
+  },
+  {
+    "name": "Geth unstable",
+    "id": "",
+    "url": "https://eth.gateway.whoisens.org"
+  },
+  {
+    "name": "Parity",
+    "id": "Parity-Ethereum//v2.4.6-stable-94164e1-20190514/x86_64-linux-gnu/rustc1.34.1",
+    "url": "https://eth.gateway.whoisens.org/mainnet/parity"
+  }
+]

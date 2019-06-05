@@ -1,6 +1,12 @@
-# Ethereum Node
+# WhoisENS Ethereum Gateways (Nodes)
 
-> Service used by [WhoisENS.org](https://whoisens.org)
+![https://travis-ci.org/whoisens/whoisens-gateway-eth](https://api.travis-ci.org/whoisens/whoisens-gateway-eth.svg?branch=master)
+
+
+Unique service, that provides different Ethereum version of nodes, allows user to select and use any nodes and version.
+Completely free and OpenSource!
+
+> Service intensely used by [WhoisENS.org](https://whoisens.org)
 
 **Endpoint**: [https://eth.gateway.whoisens.org](https://eth.gateway.whoisens.org)
 

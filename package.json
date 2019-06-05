@@ -1,0 +1,32 @@
+{
+  "name": "whoisens-gateway-eth",
+  "version": "1.0.0",
+  "description": "WhoisENS Ethereum Gateway",
+  "private": true,
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=12.4.0",
+    "npm": ">=6.5.0"
+  },
+  "scripts": {
+    "test": "npx node --experimental-modules tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whoisens/whoisens-gateway-eth.git"
+  },
+  "author": "Alex Ivasyuv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whoisens/whoisens-gateway-eth/issues"
+  },
+  "homepage": "https://github.com/whoisens/whoisens-gateway-eth#readme",
+  "devDependencies": {
+    "node-test": "^1.2.4"
+  }
+}

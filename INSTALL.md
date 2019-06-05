@@ -6,28 +6,30 @@
 ```bash
 docker network create eth-gateway
 
+# Geth stable
+mkdir -p /data/ethereum-node-stable
+docker run -d --name ethereum-node-stable --net eth-gateway -v /data/ethereum-node-stable:/root \
+           -p 30303:30303 -p 30303:30303/udp \
+           ethereum/client-go:stable --syncmode "fast" --cache=4096 --rpc --rpcaddr 0.0.0.0 --rpcvhosts=* --rpcapi="eth,net,web3" --rpccorsdomain=* \
+           --maxpeers=256 --maxpendpeers=3
+
 # Parity
 mkdir -p /data/parity-ethereum-stable
 docker run -d --net eth-gateway --name parity-ethereum-stable \
        -v /data/parity-ethereum-stable:/home/parity/.local/share/io.parity.ethereum \
-       -p 127.0.0.1:8545:8545 -p 30303:30303 -p 30303:30303/udp parity/parity:stable \
-       --base-path /home/parity/.local/share/io.parity.ethereum --no-ipc --jsonrpc-apis="eth,rpc,net" \
+       -p 30313:30313 -p 30313:30313/udp parity/parity:stable \
+       --port=30313 \
+       --base-path /home/parity/.local/share/io.parity.ethereum --no-ipc --jsonrpc-apis="eth,rpc,net,web3" \
        --jsonrpc-interface all --jsonrpc-hosts="all" --jsonrpc-cors="all" --cache-size 4096 \
-       --jsonrpc-max-payload=1 --db-compaction=hdd --mode=active --max-peers=512 --min-peers=50 --max-pending-peers=512 \
+       --jsonrpc-max-payload=1 --db-compaction=ssd --mode=active --max-peers=256 --min-peers=50 --max-pending-peers=256 \
        --no-hardware-wallets
 
-# or Geth stable
-mkdir -p /data/ethereum-node-stable
-docker run -d --name ethereum-node-stable --net eth-gateway -v /data/ethereum-node-stable:/root \
-           -p 127.0.0.1:8545:8545 -p 30303:30303 -p 30303:30303/udp \
-           ethereum/client-go:stable --syncmode "fast" --cache=4096 --rpc --rpcaddr 0.0.0.0 --rpcvhosts=* --rpcapi="eth,net" --rpccorsdomain=* \
-           --maxpeers=256 --maxpendpeers=3
-
-# or Geth unstable
+# Geth unstable
 mkdir -p /data/ethereum-node
 docker run -d --name ethereum-node --net eth-gateway -v /data/ethereum-node:/root \
-           -p 127.0.0.1:8545:8545 -p 30303:30303 -p 30303:30303/udp \
-           ethereum/client-go --syncmode "fast" --cache=4096 --rpc --rpcaddr 0.0.0.0 --rpcvhosts=* --rpcapi="eth,net" --rpccorsdomain=*
+           -p 30323:30323 -p 30323:30323/udp \
+           ethereum/client-go --syncmode "fast" --cache=4096 --rpc --rpcaddr 0.0.0.0 --rpcvhosts=* --rpcapi="eth,net,web3" --rpccorsdomain=* \
+           --maxpeers=256 --maxpendpeers=3
 
 docker build . -t whoisens-eth-gateway
 
