@@ -4,3 +4,7 @@
 - support of different nodes
 - tests
 - CI integration
+
+### Changed
+- moved to Nginx from Apache
+- 

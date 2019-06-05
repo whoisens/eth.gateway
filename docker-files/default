@@ -36,6 +36,14 @@ server {
         alias /var/www/html/nodes.json;
     }
 
+    location /mainnet/geth {
+        proxy_pass http://node-geth-stable-mainnet:8545;
+    }
+
+    location /mainnet {
+        proxy_pass http://node-geth-stable-mainnet:8545;
+    }
+
     location / {
         #if ($content_type = "application/json") {
             proxy_pass http://node-geth-stable-mainnet:8545;
