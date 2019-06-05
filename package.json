@@ -14,7 +14,12 @@
     "npm": ">=6.5.0"
   },
   "scripts": {
-    "test": "npx node --experimental-modules tests/index.js"
+    "test": "npx node --experimental-modules tests/index.js",
+    "docker:build": "docker build . -t whoisens-eth-gateway",
+    "docker:stop": "docker stop whoisens-eth-gateway",
+    "docker:rm": "docker rm whoisens-eth-gateway",
+    "docker:start": "docker run -d --net eth-gateway -p 127.0.0.5:80:80 -p 127.0.0.5:443:443 --name whoisens-eth-gateway whoisens-eth-gateway",
+    "docker:redeploy": "npm run docker:stop && npm run docker:rm && npm run docker:start"
   },
   "repository": {
     "type": "git",
