@@ -17,11 +17,15 @@ server {
     index index.html;
 
     location /mainnet/geth/stable/ {
-        proxy_pass http://ethereum-node-mainnet-stable:8545/;
+        proxy_pass http://node-geth-stable-mainnet:8545/;
     }
 
     location /mainnet/geth/unstable {
-        proxy_pass http://ethereum-node-mainnet-unstable:8545/;
+        proxy_pass http://node-geth-unstable-mainnet:8545/;
+    }
+
+    location /mainnet/parity/stable {
+        proxy_pass http://node-parity-stable-mainnet:8545/;
     }
 
     location / {
@@ -29,6 +33,6 @@ server {
     }
 
     location / {
-        proxy_pass http://ethereum-node-stable:8545/;
+        proxy_pass http://node-geth-stable-mainnet:8545/;
     }
 }
