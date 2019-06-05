@@ -19,32 +19,36 @@ server {
 
     index index.html;
 
-    location /mainnet/geth/stable {
+    location = /mainnet {
         proxy_pass http://node-geth-stable-mainnet:8545;
     }
 
-    location /mainnet/geth/unstable {
+    location = /mainnet/geth {
+        proxy_pass http://node-geth-stable-mainnet:8545;
+    }
+
+    location = /mainnet/geth/stable {
+        proxy_pass http://node-geth-stable-mainnet:8545;
+    }
+
+    location = /mainnet/geth/unstable {
         proxy_pass http://node-geth-unstable-mainnet:8545;
     }
 
-    location /mainnet/parity/stable {
+    location = /mainnet/parity {
         proxy_pass http://node-parity-stable-mainnet:8545;
     }
 
-    location /nodes {
+    location = /mainnet/parity/stable {
+        proxy_pass http://node-parity-stable-mainnet:8545;
+    }
+
+    location = /nodes {
         default_type application/json;
         alias /var/www/html/nodes.json;
     }
 
-    location /mainnet/geth {
-        proxy_pass http://node-geth-stable-mainnet:8545;
-    }
-
-    location /mainnet {
-        proxy_pass http://node-geth-stable-mainnet:8545;
-    }
-
-    location / {
+    location = / {
         #if ($content_type = "application/json") {
             proxy_pass http://node-geth-stable-mainnet:8545;
          #   break;
