@@ -8,9 +8,8 @@ RUN apt-get update && apt-get install -y nginx nano
 RUN mkdir /etc/ssl
 RUN chmod 700 /etc/ssl
 
-COPY docker-files/certs/server.crt /etc/ssl/certs/server.crt
-COPY docker-files/certs/server.key /etc/ssl/private/server.key
-COPY docker-files/certs/ca-bundle.crt /etc/ssl/ca-bundle.crt
+COPY docker-files/certs/fullchain.crt /etc/ssl/fullchain.crt
+COPY docker-files/certs/server.key /etc/ssl/server.key
 
 RUN chmod 400 /etc/ssl/*
 
