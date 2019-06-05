@@ -1,7 +1,7 @@
 import util from 'util';
 import {exec} from 'child_process';
 import Suite from 'node-test';
-import nodes from './nodes.json';
+import nodes from '../docker-files/nodes.json';
 
 const execCommand = util.promisify(exec);
 

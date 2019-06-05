@@ -17,6 +17,8 @@ COPY docker-files/certs/server.crt /etc/ssl/certs/server.crt
 COPY docker-files/certs/server.key /etc/ssl/private/server.key
 COPY docker-files/certs/ca-bundle.crt /etc/apache2/ssl.crt/ca-bundle.crt
 
+COPY docker-files/nodes.json /var/www/html/
+
 EXPOSE 80 443
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
