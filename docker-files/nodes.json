@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Geth stable",
+    "id": "Geth/v1.8.27-stable-4bcc0a37/linux-amd64/go1.11.9",
+    "urls": [
+      "https://eth.gateway.whoisens.org",
+      "https://eth.gateway.whoisens.org/mainnet",
+      "https://eth.gateway.whoisens.org/mainnet/geth",
+      "https://eth.gateway.whoisens.org/mainnet/geth/stable"
+    ]
+  },
+  {
+    "name": "Geth unstable",
+    "id": "Geth/v1.9.0-unstable-42b81f94-20190604/linux-amd64/go1.12.5",
+    "urls": [
+      "https://eth.gateway.whoisens.org/mainnet/geth/unstable"
+    ]
+  },
+  {
+    "name": "Parity",
+    "id": "Parity-Ethereum//v2.4.6-stable-94164e1-20190514/x86_64-linux-gnu/rustc1.34.1",
+    "urls": [
+      "https://eth.gateway.whoisens.org/mainnet/parity"
+    ]
+  }
+]

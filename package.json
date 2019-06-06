@@ -1,0 +1,37 @@
+{
+  "name": "whoisens-gateway-eth",
+  "version": "1.0.0",
+  "description": "WhoisENS Ethereum Gateway",
+  "private": true,
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=12.4.0",
+    "npm": ">=6.5.0"
+  },
+  "scripts": {
+    "test": "npx node --experimental-modules tests/index.js",
+    "docker:build": "docker build . -t whoisens-eth-gateway",
+    "docker:stop": "docker stop whoisens-eth-gateway",
+    "docker:rm": "docker rm whoisens-eth-gateway",
+    "docker:start": "docker run -d --net eth-gateway -p 127.0.0.5:80:80 -p 127.0.0.5:443:443 --name whoisens-eth-gateway whoisens-eth-gateway",
+    "docker:redeploy": "npm run docker:build && npm run docker:stop && npm run docker:rm && npm run docker:start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whoisens/whoisens-gateway-eth.git"
+  },
+  "author": "Alex Ivasyuv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whoisens/whoisens-gateway-eth/issues"
+  },
+  "homepage": "https://github.com/whoisens/whoisens-gateway-eth#readme",
+  "devDependencies": {
+    "node-test": "^1.2.4"
+  }
+}
