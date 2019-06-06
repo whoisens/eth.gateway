@@ -14,7 +14,7 @@ for (const node of nodes) {
       const {stdout, stderr} = await execCommand(`geth --exec "eth.syncing" attach ${nodeURL}`);
 
       t.falsey(stderr);
-      t.equal(stdout.trim(), "false");
+      t.equal(stdout.trim(), 'false');
     });
 
     suite.test('Check for correct node version/identification', async (t) => {
@@ -25,11 +25,21 @@ for (const node of nodes) {
     });
 
     suite.test('Check ability to call RPC with curl', async (t) => {
-      const {stdout, stderr} = await execCommand(`curl -s --data '{"method":"eth_syncing","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST ${nodeURL}`);
+      const data = JSON.stringify({method: 'eth_syncing', params: [], id: 1, jsonrpc: '2.0'});
+      const {stdout, stderr} = await execCommand(`curl -s --data '${data}' -H "Content-Type: application/json" -X POST ${nodeURL}`);
 
       t.falsey(stderr);
       const result = JSON.parse(stdout);
       t.equal(result.result, false);
+    });
+
+    suite.test('Check version of network', async (t) => {
+      const data = JSON.stringify({method: 'net_version', params: [], id: 1, jsonrpc: '2.0'});
+      const {stdout, stderr} = await execCommand(`curl -s --data '${data}' -H "Content-Type: application/json" -X POST ${nodeURL}`);
+
+      t.falsey(stderr);
+      const result = JSON.parse(stdout);
+      t.equal(result.result, '1');
     });
   }
 }
